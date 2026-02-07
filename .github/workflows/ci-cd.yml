@@ -12,11 +12,14 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    - name: Set up Docker
+      uses: docker/setup-buildx-action@v3
+
     - name: Build Docker images
-      run: docker-compose build
+      run: docker compose build
 
-    - name: Run containers
-      run: docker-compose up -d
+    - name: Start containers
+      run: docker compose up -d
 
-    - name: Check running containers
+    - name: Verify running containers
       run: docker ps
